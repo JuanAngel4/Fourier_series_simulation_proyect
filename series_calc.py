@@ -24,9 +24,10 @@ def Coeffs_an_bn(f,T,n,M):
 
     return an, bn
 
-def Fourier_Series(f, T, N, M):
+def Fourier_Series(f, T, N, M, x_range):
     """Calcula la serie de Fourier hasta N términos."""
-    x = np.linspace(-T/2, T/2, M)
+    a, b = x_range
+    x = np.linspace(a, b, M)
     s = Coeff_a0(f, T,M) / 2
 
     for n in range(1, N + 1):

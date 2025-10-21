@@ -1,19 +1,29 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import functions as f
+import graph as g
+import series_calc as sc
 
-# Importar módulos personalizados
-import functions as f     # funciones base: señales (onda cuadrada, triangular, etc.)
-import graph as g         # funciones gráficas (plot, estilos, etc.)
-import series_calc as sc  # cálculos de coeficientes y serie de Fourier
+# --- Parámetros globales ---
+N = 30          # Número de términos en la serie
+M = 1000            # Resolución (puntos de muestreo)
+   # Dominio sobre el que se evalúa la señal
+num_periods = 3
 
-# --- Parámetros de la simulación ---
-T = 3.1416   # periodo
-N = 10          # número de términos de la serie
-M = 1000        # número de puntos para la simulación
 
 # --- Selección de la función base ---
-signal = f.sawtooth_wave  # puedes cambiarla por f.square_wave o f.sawtooth_wave
+# Usa el diccionario 'waves' definido en functions.py
+# Puedes cambiar el nombre de la clave para probar distintas señales.
+selected_wave = "Triangular Wave"  # <--- cambia aquí la señal
+signal_func = f.waves[selected_wave]
 
-# --- Calcular Serie de Fourier ---
-x, s = sc.Fourier_Series(signal, T, N, M)
+# --- Crear el dominio ---
+T = 6* np.pi
+x_range = (-10, 10)
+x = np.linspace(*x_range, 1000)
 
+# --- Calcular la Serie de Fourier ---
+x, s = sc.Fourier_Series(signal_func, T, N, M, x_range)
 # --- Graficar resultados ---
-g.plot_fourier(x, signal(x), s, N, label_func="Función original")
+label = f"{selected_wave} (Función Original)"
+g.plot_fourier(x, signal_func(x), s, N, label_func=label)
