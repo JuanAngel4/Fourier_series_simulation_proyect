@@ -4,26 +4,25 @@ import functions as f
 import graph as g
 import series_calc as sc
 
-# --- Parámetros globales ---
-N = 30          # Número de términos en la serie
-M = 1000            # Resolución (puntos de muestreo)
-   # Dominio sobre el que se evalúa la señal
-num_periods = 3
-
-
-# --- Selección de la función base ---
-# Usa el diccionario 'waves' definido en functions.py
-# Puedes cambiar el nombre de la clave para probar distintas señales.
-selected_wave = "Triangular Wave"  # <--- cambia aquí la señal
-signal_func = f.waves[selected_wave]
-
-# --- Crear el dominio ---
-T = 6* np.pi
+# --- Parámetros ---
+N = 6
+M = 200
+T =  np.pi
 x_range = (-10, 10)
-x = np.linspace(*x_range, 1000)
+x = np.linspace(*x_range, M)
+selected_wave = 10  # 0 = square_wave, 1 = triangular_wave, etc.
+# --- Selección de la función base ---
+signal_func = f.waves_list()[selected_wave]
+print(f"Función seleccionada: {signal_func.__name__}")
+
+# --- Empaquetar función con su T ---
+func_with_T = lambda x: signal_func(x, T)
 
 # --- Calcular la Serie de Fourier ---
-x, s = sc.Fourier_Series(signal_func, T, N, M, x_range)
+x, s = sc.Fourier_Series(func_with_T, T, N, M, x_range)
+y_range = (-1.5, 1.5)
 # --- Graficar resultados ---
-label = f"{selected_wave} (Función Original)"
-g.plot_fourier(x, signal_func(x), s, N, label_func=label)
+label = signal_func.__name__
+#g.plot_fourier(x, func_with_T(x), s, N, label_func=label)
+
+g.plot_fourier2(x, func_with_T(x), s, N, T, x_range, y_range, label_func=label)
