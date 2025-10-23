@@ -131,7 +131,7 @@ with col2:
     """)
 
 st.markdown("---")
-st.caption("Developed by Juan Ángel Gamez Diaz — Interactive Fourier Visualizer 🧠\nProyecto de materia Física Matemática 1")
+st.caption("Developed by Juan Ángel Gamez Diaz — Interactive Fourier Visualizer | Mathematical Metods for phisicists Course Project")
 
 # === SECCIÓN DE SUGERENCIAS AL FINAL ===
 import sqlite3
