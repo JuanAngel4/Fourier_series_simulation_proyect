@@ -1,4 +1,5 @@
 streamlit
 numpy
-matplotlib
-sqlite3-binary
+pandas
+matplotlib>=3.9.0
+
