@@ -1,15 +1,20 @@
 import streamlit as st
+st.set_page_config(
+    page_title="Fourier Series Simulator",
+    layout="wide",
+    page_icon="📈",
+     initial_sidebar_state="expanded"
+)
+
+
+import streamlit as st
 import numpy as np
 import functions as f
 import series_calc as sc
 import matplotlib.pyplot as plt
 
 # === PAGE CONFIGURATION ===
-st.set_page_config(
-    page_title="Fourier Series Simulator",
-    layout="wide",
-    page_icon="📈",
-)
+
 
 # === CUSTOM STYLES ===
 st.markdown("""
@@ -22,9 +27,12 @@ div[data-testid="stSidebar"] {background-color: #F0F4F8;color: #1E3A8A;}
 </style>
 """, unsafe_allow_html=True)
 
+
+
 # === TITLE ===
-st.title("🎨 Interactive Fourier Series Simulator")
+st.title("Interactive Fourier Series Simulator")
 st.markdown("Explore how different periodic functions are approximated using their Fourier series.")
+
 
 # --- SIDEBAR ---
 st.sidebar.header("⚙️ Simulation Parameters")
@@ -33,10 +41,11 @@ selected_name = st.sidebar.radio("Select a base function:", wave_names)
 
 T = st.sidebar.slider("Period (T)", 0.5, 10.0, 3.14, step=0.1)
 N_max = st.sidebar.slider("Maximum number of coefficients (N max)", 5, 100, 30)
-M = st.sidebar.slider("Sampling resolution (M)", 100, 2000, 500, step=100)
-x_min, x_max = st.sidebar.slider("X range", -20.0, 20.0, (-10.0, 10.0))
-y_min, y_max = st.sidebar.slider("Y range", -3.0, 3.0, (-1.5, 1.5))
 N = st.sidebar.slider("Active coefficients (N)", 1, N_max, 6)
+M = st.sidebar.slider("Sampling resolution (M)", 100, 2000, 500, step=100)
+x_min, x_max = st.sidebar.slider("X range", -20.0, 20.0, (-10.0, 10.0),step=0.5)
+y_min, y_max = st.sidebar.slider("Y range", -3.0, 3.0, (-1.5, 1.5),step=0.5)
+
 
 # === MAIN SECTION ===
 col1, col2 = st.columns([2,1])
@@ -83,7 +92,7 @@ if col_count % 2 != 0:
 
 terms_latex += r"\end{alignat*}"
 
-st.markdown("<h3 style='text-align: center;'>📋 Fourier Series Terms</h3>", unsafe_allow_html=True)
+st.markdown("<h3 style='text-align: center;'> Fourier Series Terms</h3>", unsafe_allow_html=True)
 st.latex(terms_latex)
 
 
@@ -95,12 +104,12 @@ show_signals = st.sidebar.checkbox("Show original & Fourier sum", value=True)
 
 # === PLOT EN COL1 ===
 with col1:
-    st.subheader("📊 Fourier Series Plot with Individual Terms")
-    fig, ax = plt.subplots(figsize=(8,4))
+    st.subheader("Fourier Series Plot with Individual Terms")
+    fig, ax = plt.subplots(figsize=(12,6))
     
     # Señal original y Fourier sum
     if show_signals:
-        ax.plot(x, y_original, label=f"{selected_name} (Original)", linewidth=2, color="#1E40AF")
+        ax.plot(x, y_original, label=f"{selected_name} (Original)", linewidth=2, color="#1F222F")
         ax.plot(x, s_total, '-.', color='orange', label='Fourier Sum', linewidth=2)
     
     # Términos individuales (fondo)
@@ -120,7 +129,7 @@ with col1:
 
 # === INFORMACIÓN Y PARÁMETROS EN COL2 ===
 with col2:
-    st.subheader("📋 Current Parameters")
+    st.subheader("Current Parameters")
     st.markdown(f"""
     **Selected function:** `{selected_name}`  
     **Period (T):** {T:.3f}  
