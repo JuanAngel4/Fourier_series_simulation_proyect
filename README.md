@@ -1,6 +1,6 @@
 # Fourier Series Simulator | Digital Signal Processing | Numerical Approximation of Fourier Series
 Check out the project here(just wait a few seconds!): https://fourier-series-simulation.streamlit.app
-<img width="1024" height="800" alt="url_qrcodecreator com_23_27_23" src="https://github.com/user-attachments/assets/ab84490c-c4b0-4403-9181-1bc2732ccf73" />
+<img width="800" height="800" alt="url_qrcodecreator com_23_27_23" src="https://github.com/user-attachments/assets/ab84490c-c4b0-4403-9181-1bc2732ccf73" />
 
 ## 1. Overview
 
