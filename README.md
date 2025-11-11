@@ -1,5 +1,5 @@
 # Fourier Series Simulator | Digital Signal Processing | Numerical Approximation of Fourier Series
-
+Check out the project here(just wait a few seconds!): https://fourier-series-simulation.streamlit.app
 ## 1. Overview
 
 The **Fourier Series Simulator** is an interactive web application designed to visualize the Fourier decomposition of periodic functions.  
