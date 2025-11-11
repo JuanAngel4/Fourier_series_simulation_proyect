@@ -1,4 +1,4 @@
-# Fourier Series Simulator
+# Fourier Series Simulator | Digital Signal Processing | Numerical Approximation of Fourier Series
 
 ## 1. Overview
 
